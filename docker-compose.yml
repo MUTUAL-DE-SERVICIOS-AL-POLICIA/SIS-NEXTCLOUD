@@ -1,0 +1,31 @@
+version: '2.1'
+
+services:
+
+  db:
+    container_name: nextclouddb
+    image: linuxserver/mariadb
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - /var/docker-containers/nextcloud/db:/config
+    environment:
+      - MYSQL_ROOT_PASSWORD=4RFgSDF
+      - TZ=America/La_Paz
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextclouduser
+      - MYSQL_PASSWORD=AcDwwdF
+  app:
+    container_name: nextcloud
+    image: linuxserver/nextcloud
+    restart: unless-stopped
+    ports:
+      - 8205:443
+    volumes:
+      - /var/docker-containers/nextcloud/config:/config
+      - /var/docker-containers/nextcloud/data:/data
+    environment:
+      - TZ=America/La_Paz
+    depends_on:
+      - db
