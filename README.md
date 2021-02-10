@@ -20,4 +20,4 @@ $docker-compose up -d
 
 Select a web browser
 
-https://direcion-ip:8205
+https://ip-address:8205
